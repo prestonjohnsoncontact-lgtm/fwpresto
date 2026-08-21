@@ -3349,37 +3349,28 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 
-<script id="fwp-persistent-view-counter-v2">
+<script id="fwp-cloudflare-view-counter-v3">
 (function(){
   var out=document.getElementById('fwpViewCount');
   if(!out) return;
 
-  function show(n){
-    n=Number(n);
-    out.textContent=Number.isFinite(n) ? n.toLocaleString() : '—';
-  }
+  var visitEndpoint='https://fwpresto-counter.7527mjj6fc.workers.dev/visit';
 
-  /* Local HTML preview: count opens in THIS browser so the UI can be tested.
-     Public fwpresto.com: use the shared persistent counter across visitors/devices. */
-  if(location.protocol==='file:'){
-    try{
-      var localKey='fwp_local_preview_opens';
-      var n=Number(localStorage.getItem(localKey)||0)+1;
-      localStorage.setItem(localKey,String(n));
-      show(n);
-    }catch(e){ show(1); }
-    return;
-  }
+  out.textContent='…';
 
-  var endpoint='https://api.counterapi.dev/v1/fwpresto.com/fwpresto-com-issue001/up';
-  fetch(endpoint,{cache:'no-store',mode:'cors'})
-    .then(function(r){if(!r.ok) throw new Error('counter '+r.status);return r.json();})
-    .then(function(data){
-      var n=data && (data.count ?? data.value);
-      show(n);
+  fetch(visitEndpoint, {method:'GET', mode:'cors', cache:'no-store'})
+    .then(function(r){
+      if(!r.ok) throw new Error('Counter HTTP '+r.status);
+      return r.json();
     })
-    .catch(function(){
-      /* Counter failure must never affect the website. */
+    .then(function(data){
+      var n=Number(data && data.count);
+      if(!Number.isFinite(n)) throw new Error('Invalid counter response');
+      out.textContent=n.toLocaleString();
+      out.title='TOTAL PAGE OPENS: '+n.toLocaleString();
+    })
+    .catch(function(err){
+      console.warn('FW.PRESTO view counter unavailable:', err);
       out.textContent='—';
     });
 })();
