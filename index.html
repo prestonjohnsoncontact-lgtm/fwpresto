@@ -1866,6 +1866,182 @@ body:after{
 .fwp-radio-body .music-btn{min-width:22px!important;padding:2px 4px!important;font-size:7px!important}
 </style>
 
+
+<style id="fwp-mobile-launch-polish">
+/* PHONE-ONLY LAUNCH POLISH — desktop is untouched */
+@media (max-width:900px){
+  html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
+  body{min-height:100dvh!important}
+
+  /* compact sticky header + usable swipe nav */
+  .topbar{
+    position:sticky!important;top:0!important;z-index:5000!important;
+    min-height:48px!important;height:auto!important;
+    padding:6px 10px!important;
+    display:flex!important;align-items:center!important;
+    background:rgba(243,234,220,.96)!important;
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  }
+  .topbar .brand{display:none!important}
+  .topbar nav{
+    width:100%!important;display:flex!important;gap:16px!important;
+    overflow-x:auto!important;overflow-y:hidden!important;
+    white-space:nowrap!important;justify-content:flex-start!important;
+    scrollbar-width:none!important;-webkit-overflow-scrolling:touch;
+    padding:1px 2px!important;
+  }
+  .topbar nav::-webkit-scrollbar{display:none}
+  .topbar nav a,.topbar nav button{
+    flex:0 0 auto!important;font-size:8px!important;padding:9px 1px!important;
+    min-height:34px!important;touch-action:manipulation!important;
+  }
+
+  /* hero becomes a deliberate phone feed instead of desktop coordinates */
+  .hero{
+    position:relative!important;height:auto!important;min-height:0!important;
+    padding:24px 14px 86px!important;display:flex!important;
+    flex-direction:column!important;gap:18px!important;
+    overflow:visible!important;
+  }
+  .hero .intro{
+    position:relative!important;inset:auto!important;order:1!important;
+    width:100%!important;max-width:none!important;margin:0!important;
+    padding:0!important;transform:none!important;
+  }
+  .hero .intro h1{font-size:clamp(34px,11vw,52px)!important;line-height:.9!important}
+  .hero .intro .eyebrow{font-size:7px!important}
+
+  /* main image */
+  .hero .photo{
+    position:relative!important;inset:auto!important;order:2!important;
+    width:min(88vw,430px)!important;height:auto!important;
+    margin:2px auto 4px!important;transform:none!important;
+  }
+  .hero .photo>img{
+    width:100%!important;height:auto!important;max-height:none!important;
+    aspect-ratio:3/4!important;object-fit:cover!important;display:block!important;
+  }
+  .photo>.follow{
+    top:12px!important;right:-4px!important;
+    transform:rotate(-4deg)!important;
+  }
+
+  /* polaroids become a clean horizontal swipe row */
+  .hero-polaroids{
+    position:relative!important;inset:auto!important;order:3!important;
+    width:calc(100% + 28px)!important;height:auto!important;
+    margin:0 -14px!important;padding:4px 14px 14px!important;
+    display:flex!important;gap:12px!important;
+    overflow-x:auto!important;overflow-y:visible!important;
+    scroll-snap-type:x proximity!important;-webkit-overflow-scrolling:touch;
+    pointer-events:auto!important;transform:none!important;
+    scrollbar-width:none!important;
+  }
+  .hero-polaroids::-webkit-scrollbar{display:none}
+  .hero-polaroid{
+    position:relative!important;inset:auto!important;
+    flex:0 0 min(64vw,235px)!important;width:min(64vw,235px)!important;
+    transform:none!important;scroll-snap-align:center!important;
+    touch-action:pan-x!important;
+  }
+  .hero-polaroid:hover{transform:none!important}
+  .hero-polaroid img{width:100%!important;height:auto!important}
+  .mobile-swipe-hint{order:4!important;margin:-12px 0 2px!important}
+
+  /* latest video and radio stack full-width in a predictable order */
+  .fwp-latest-v2{
+    position:relative!important;inset:auto!important;order:5!important;
+    width:100%!important;max-width:none!important;margin:0!important;
+    transform:none!important;
+  }
+  .hero .musicwin,.musicwin{
+    position:relative!important;inset:auto!important;order:6!important;
+    width:100%!important;max-width:none!important;margin:0!important;
+    transform:none!important;height:auto!important;
+  }
+  .fwp-latest-v2-head,.musicwin .wh{cursor:default!important}
+
+  /* radio touch targets + results */
+  .fwp-radio-search{height:38px!important;grid-template-columns:30px 1fr 34px!important}
+  #fwpSongSearch{font-size:10px!important}
+  #fwpSongClear{font-size:18px!important;min-height:34px!important}
+  .fwp-radio-now{grid-template-columns:52px minmax(0,1fr)!important;gap:10px!important}
+  .fwp-radio-art{width:52px!important;height:52px!important}
+  .fwp-radio-info .player-title{font-size:12px!important}
+  .fwp-radio-info .player-meta,.fwp-radio-info .player-sub{font-size:7px!important}
+  .fwp-radio-body .music-controls{
+    display:flex!important;align-items:center!important;gap:7px!important;
+    min-height:38px!important;
+  }
+  .fwp-radio-body .music-btn{
+    min-width:38px!important;min-height:32px!important;
+    padding:5px 7px!important;font-size:9px!important;
+    touch-action:manipulation!important;
+  }
+  #fwpRadioTime{font-size:7px!important}
+  #fwpRadioFull{font-size:7px!important;padding:8px 0!important}
+  #fwpRadioProgress{height:18px!important}
+  .fwp-radio-results{
+    position:relative!important;left:auto!important;right:auto!important;top:auto!important;
+    max-height:230px!important;margin-top:7px!important;box-shadow:none!important;
+  }
+  .fwp-radio-result{
+    grid-template-columns:42px minmax(0,1fr) auto!important;
+    gap:9px!important;padding:8px!important;min-height:58px!important;
+  }
+  .fwp-radio-result img{width:42px!important;height:42px!important}
+  .fwp-radio-result strong{font-size:9px!important}
+  .fwp-radio-result small,.fwp-radio-result em{font-size:7px!important}
+
+  /* status/counter stay readable without floating over content */
+  .hero .status,.hero .fwp-view-counter{
+    position:relative!important;inset:auto!important;order:7!important;
+    width:max-content!important;margin:0 0 0 auto!important;
+    transform:none!important;
+  }
+
+  /* mobile popups use the viewport safely */
+  .popup,.modal,.inbox-window{
+    max-width:calc(100vw - 24px)!important;
+    max-height:calc(100dvh - 90px)!important;
+  }
+  .inbox-window{
+    position:fixed!important;left:12px!important;right:12px!important;
+    top:64px!important;width:auto!important;overflow:hidden!important;
+  }
+  .inbox-layout{grid-template-columns:92px minmax(0,1fr)!important;max-height:calc(100dvh - 145px)!important}
+  .inbox-message,.inbox-reader{overflow:auto!important}
+  #viewer{padding:58px 10px!important}
+  #viewerImg{max-width:calc(100vw - 20px)!important;max-height:calc(100dvh - 116px)!important}
+
+  /* remove desktop-only floating clutter from the phone canvas */
+  .fwp-sticker,.fwp-orbit,.fwp-clock,.fun-corner,.issue-chip,.mini-status,
+  .vertical-note,.fwp-desktop-folder{display:none!important}
+
+  /* intro/login screen fits short phones and safe areas */
+  .fwp-intro{
+    min-height:100dvh!important;padding:
+      max(18px,env(safe-area-inset-top))
+      16px
+      max(18px,env(safe-area-inset-bottom))!important;
+    overflow-y:auto!important;
+  }
+  .fwp-intro-card{width:100%!important;max-width:520px!important}
+  .fwp-intro-logo{font-size:clamp(48px,17vw,88px)!important;line-height:.82!important}
+  #fwpEnter{min-height:44px!important;padding:12px 16px!important}
+
+  /* bottom ticker must not cover phone controls */
+  .ticker{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important}
+}
+@media (max-width:430px){
+  .hero{padding-left:12px!important;padding-right:12px!important}
+  .hero-polaroids{width:calc(100% + 24px)!important;margin-left:-12px!important;margin-right:-12px!important;padding-left:12px!important;padding-right:12px!important}
+  .hero-polaroid{flex-basis:72vw!important;width:72vw!important}
+  .fwp-latest-v2-title{font-size:16px!important}
+  .inbox-layout{grid-template-columns:82px minmax(0,1fr)!important}
+}
+</style>
+
 </head>
 <body>
 
@@ -3159,6 +3335,28 @@ document.addEventListener('DOMContentLoaded',function(){
  bar.oninput=function(){if(a.duration)a.currentTime=(Number(bar.value)/100)*a.duration};
  document.addEventListener('click',function(e){if(!e.target.closest('.musicwin'))close()});
  window.FWP_PLAY_SITE_MUSIC=function(){};
+})();
+</script>
+
+
+<script id="fwp-mobile-interaction-safety">
+(function(){
+  function phone(){ return window.matchMedia("(max-width:900px)").matches; }
+
+  /* On phones, stop desktop drag handlers from stealing taps/swipes. */
+  document.addEventListener("pointerdown", function(e){
+    if(!phone()) return;
+    if(e.target.closest(".hero-polaroid,.musicwin,.fwp-latest-v2")){
+      e.stopPropagation();
+    }
+  }, true);
+
+  /* Keep radio/search controls explicitly tappable. */
+  document.addEventListener("touchstart", function(e){
+    if(e.target.closest("#fwpSongSearch,#fwpSongClear,#fwpRadioPlay,#fwpRadioReplay,#fwpRadioBack,#fwpRadioForward,#fwpRadioProgress,#fwpRadioFull")){
+      e.stopPropagation();
+    }
+  }, {capture:true,passive:true});
 })();
 </script>
 
